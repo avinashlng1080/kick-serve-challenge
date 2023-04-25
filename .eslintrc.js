@@ -11,7 +11,7 @@ module.exports = {
         pathGroups: [
           {
             pattern:
-              '{@(@components|@constants|@context|@database|@helpers|@hooks|@init|@managers|@queries|@screens|@typings|@test|@utils)/**}',
+              '{@(@components|@constants|@context|@database|@helpers|@hooks|@init|@lib|@managers|@queries|@screens|@typings|@test|@utils)/**}',
             group: 'external',
             position: 'after'
           },

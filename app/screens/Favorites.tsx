@@ -1,9 +1,12 @@
+import EmptyState from '@components/EmptyState'
+import { containerStyles } from '@lib/styles'
 import React from 'react'
 import { View } from 'react-native'
 
-import { containerStyles } from '../../lib/styles'
-import EmptyState from '../components/EmptyState'
-export default function Favorites({ navigation }) {
+type FavoritesProps = {
+  navigation: any //todo: avoid type any
+}
+const Favorites = ({ navigation }: FavoritesProps) => {
   return (
     <View style={containerStyles}>
       <EmptyState
@@ -16,3 +19,5 @@ export default function Favorites({ navigation }) {
     </View>
   )
 }
+
+export default Favorites

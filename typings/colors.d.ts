@@ -19,17 +19,3 @@ interface KSSize {
   xl: number
   xxl: number
 }
-
-interface KSTextStyle {
-  [key: string]: {
-    fontSize: number
-    color: string
-    fontWeight?: string
-    marginBottom?: number
-  }
-}
-
-interface KSContainerStyle {
-  flex: number
-  backgroundColor: string
-}

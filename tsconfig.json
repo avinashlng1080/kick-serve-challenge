@@ -8,6 +8,7 @@
       "@components/*": ["app/components/*"],
       "@screens/*": ["app/screens/*"],
       "@constants/*": ["app/constants/*"],
+      "@lib/*": ["app/lib/*"],
     }
   },
 }

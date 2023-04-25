@@ -1,16 +1,16 @@
+import { KSColors, KSSizes } from 'constants/theme'
+
 import { SCREENS } from '@constants/screen'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import Discover from '@screens/Discover'
-import Favorites from '@screens/Favorites'
 import Settings from '@screens/Settings'
 import React from 'react'
 import { StyleSheet, TouchableOpacity } from 'react-native'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import Icon from 'react-native-vector-icons/Ionicons'
-
-import { colors, sizes } from './lib/styles'
+import Discover from 'screens/Discover'
+import Favorites from 'screens/Favorites'
 
 const Tab = createBottomTabNavigator()
 const Stack = createNativeStackNavigator()
@@ -33,8 +33,8 @@ const getIconName = (
 }
 
 const tabOptions = ({ route }: { route: any }) => ({
-  tabBarActiveTintColor: colors.primary,
-  tabBarInactiveTintColor: colors.neutral,
+  tabBarActiveTintColor: KSColors.primary,
+  tabBarInactiveTintColor: KSColors.neutral,
   tabBarIcon: ({ focused, color }: { focused: boolean; color: string }) => {
     // fixme: needed?
     const iconName = getIconName(route.name, focused)
@@ -62,7 +62,7 @@ const stackOptions = ({
         style={styles.button}
         onPress={() => navigation.goBack()}
       >
-        <Icon name="chevron-back" size={sizes.xxl} color={colors.black} />
+        <Icon name="chevron-back" size={KSSizes.xxl} color={KSColors.black} />
       </TouchableOpacity>
     )
   }
