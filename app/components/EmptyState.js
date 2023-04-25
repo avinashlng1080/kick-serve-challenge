@@ -1,6 +1,7 @@
+import React from 'react'
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 
-import { colors, sizes, fontWeights } from '../lib/styles'
+import { colors, sizes, fontWeights } from '../../lib/styles'
 
 export default function EmptyState({
   image,

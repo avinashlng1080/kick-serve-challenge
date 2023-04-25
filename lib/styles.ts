@@ -1,4 +1,7 @@
-export const colors = {
+
+
+
+export const colors: KSColor = {
   light: '#f0f0f0',
   neutral: '#757575',
   black: '#000000',
@@ -6,12 +9,12 @@ export const colors = {
   primary: '#0d9488'
 }
 
-export const fontWeights = {
+export const fontWeights:KSFontWeight = {
   normal: '400',
   bold: '700'
 }
 
-export const sizes = {
+export const sizes: KSSize = {
   xs: 10,
   sm: 12,
   md: 14,
@@ -20,7 +23,7 @@ export const sizes = {
   xxl: 24
 }
 
-export const textStyles = {
+export const textStyles: KSTextStyle = {
   small: {
     fontSize: sizes.sm,
     color: colors.neutral
@@ -56,7 +59,7 @@ export const textStyles = {
   }
 }
 
-export const containerStyles = {
+export const containerStyles: KSContainerStyle = {
   flex: 1,
   backgroundColor: '#ffffff'
 }

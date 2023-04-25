@@ -1,0 +1,20 @@
+- [x] Add Typescript
+- [ ] Add ESLINT rule to sort imports  
+- [ ] Install WatermelonDB - that will ensure offline support  
+- [ ] Fetch next_movie_page only if we don't have it in the db.  Check the pages variable  
+- [ ] Use proper screen container with SafeAreaView and ScrollView to cater for all screen dimensions  
+- [ ] Nice to have - show the bottomBar Favorite icon bolder if we do have favorite movies  
+- [ ] Implement Details page  
+- [ ] Add .env file for keep the API key  
+- [ ] Test on both iOS and Android devices - If possible, test on tablets also.   
+- [ ] Create a Network manager  
+- [ ] Create a DB manager  
+- [ ] Write proper unit tests - check for empty and filled states  
+- [ ] Perhaps, some API call will occur in parallel and update the movie info separately from the main flow.  
+- [ ] Tables to be created  
+  - [ ] Movie
+  - [ ] Favorite
+  - [ ] Setting
+  - [ ] Movie has a 1:1 relationship with Favorite and Setting is standalone.
+  - [ ] The Favorite table would only contain the movie_id 
+    

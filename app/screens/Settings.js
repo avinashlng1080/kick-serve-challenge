@@ -1,3 +1,4 @@
+import React from 'react'
 import {
   ScrollView,
   StyleSheet,
@@ -15,7 +16,7 @@ import {
   fontWeights,
   sizes,
   textStyles
-} from '../lib/styles'
+} from '../../lib/styles'
 
 export default function Settings({ navigation }) {
   const insets = useSafeAreaInsets()

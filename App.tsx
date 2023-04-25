@@ -1,53 +1,58 @@
-import { StyleSheet, TouchableOpacity } from 'react-native'
-import { NavigationContainer } from '@react-navigation/native'
+import { SCREENS } from '@constants/screen'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import Discover from '@screens/Discover'
+import Favorites from '@screens/Favorites'
+import Settings from '@screens/Settings'
+import React from 'react'
+import { StyleSheet, TouchableOpacity } from 'react-native'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import Icon from 'react-native-vector-icons/Ionicons'
-
-import Favorites from './screens/Favorites'
-import Discover from './screens/Discover'
-import Settings from './screens/Settings'
 
 import { colors, sizes } from './lib/styles'
 
 const Tab = createBottomTabNavigator()
 const Stack = createNativeStackNavigator()
 
-const tabOptions = ({ route }) => ({
+type RouteName = keyof typeof SCREENS
+
+//todo: review the TS typings properly in this file https://reactnavigation.org/docs/typescript/
+const getIconName = (
+  routeName: (typeof SCREENS)[RouteName],
+  focused: boolean
+) => {
+  const iconSet = {
+    [SCREENS.HOME]: ['home', 'home-outline'],
+    [SCREENS.DISCOVER]: ['compass', 'compass-outline'],
+    [SCREENS.FAVORITES]: ['heart', 'heart-outline']
+  }
+
+  const [focusedIcon, unfocusedIcon] = iconSet[routeName] || []
+  return focused ? focusedIcon : unfocusedIcon
+}
+
+const tabOptions = ({ route }: { route: any }) => ({
   tabBarActiveTintColor: colors.primary,
   tabBarInactiveTintColor: colors.neutral,
-  tabBarIcon: ({ focused, color }) => {
-    let iconName
-    if (route.name === 'Home') {
-      if (focused) {
-        iconName = 'home'
-      } else {
-        iconName = 'home-outline'
-      }
-    }
-    if (route.name === 'Discover') {
-      if (focused) {
-        iconName = 'compass'
-      } else {
-        iconName = 'compass-outline'
-      }
-    }
-    if (route.name === 'Favorites') {
-      if (focused) {
-        iconName = 'heart'
-      } else {
-        iconName = 'heart-outline'
-      }
-    }
+  tabBarIcon: ({ focused, color }: { focused: boolean; color: string }) => {
+    // fixme: needed?
+    const iconName = getIconName(route.name, focused)
     return <Icon name={iconName} size={20} color={color} />
   }
 })
 
-const stackOptions = ({ route, navigation }) => ({
+const stackOptions = ({
+  route,
+  navigation
+}: {
+  route: any
+  navigation: any
+}) => ({
   title: route.params?.name,
   headerBackVisible: false,
-  headerLeft: ({ canGoBack }) => {
+  headerLeft: ({ canGoBack }: { canGoBack: boolean }) => {
+    // fixme: needed?
     if (!canGoBack) {
       return null
     }
