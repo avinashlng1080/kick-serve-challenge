@@ -18,3 +18,5 @@
   - [ ] Movie has a 1:1 relationship with Favorite and Setting is standalone.
   - [ ] The Favorite table would only contain the movie_id 
     
+- [ ] Enable Hermes for both platforms
+- [ ] React Native New Architecture 
