@@ -9,6 +9,8 @@
       "@screens/*": ["app/screens/*"],
       "@constants/*": ["app/constants/*"],
       "@lib/*": ["app/lib/*"],
-    }
+      "@database/*": ["app/database/*"],
+    },
+    "experimentalDecorators": true
   },
 }

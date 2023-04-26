@@ -1,24 +1,24 @@
 - [x] Add Typescript
 - [x] Add ESLINT rule to sort imports  
-- [ ] Install WatermelonDB - that will ensure offline support  
+- [x] Install WatermelonDB - that will ensure offline support  
+- [x] Create a DB manager
+- [x] Add .env file for keep the API key
+- [x] Verify + Enable Hermes for both platforms
+- [x] Tables to be created
+  - [x] Movie
+  - [x] Favorite
+  - [x] Setting
+  - [x] Genre
+  - [x] Movie has a 1:1 relationship with Favorite  and Setting is standalone.
+  - [x] The Favorite table would only contain the movie_title
 - [ ] Fetch next_movie_page only if we don't have it in the db.  Check the pages variable  
 - [ ] Use proper screen container with SafeAreaView and ScrollView to cater for all screen dimensions  
 - [ ] Nice to have - show the bottomBar Favorite icon bolder if we do have favorite movies  
-- [ ] Implement Details page  
-- [x] Add .env file for keep the API key  
+- [ ] Implement Details page
 - [ ] Test on both iOS and Android devices - If possible, test on tablets also.   
-- [ ] Create a Network manager  
-- [ ] Create a DB manager  
+- [ ] Create a Network manager
 - [ ] Write proper unit tests - check for empty and filled states  
-- [ ] Perhaps, some API call will occur in parallel and update the movie info separately from the main flow.  
-- [ ] Tables to be created  
-  - [ ] Movie
-  - [ ] Favorite
-  - [ ] Setting
-  - [ ] Movie has a 1:1 relationship with Favorite and Setting is standalone.
-  - [ ] The Favorite table would only contain the movie_id 
-    
-- [ ] Enable Hermes for both platforms
-- [ ] React Native New Architecture 
+- [ ] Perhaps, some API call will occur in parallel and update the movie info separately from the main flow.
+- [ ] React Native New Architecture https://reactnative.dev/docs/new-architecture-app-intro
 - [ ] Remove unused libs, files, etc. 
 - [ ] Fix all screens with SafeAreaView where necessary 

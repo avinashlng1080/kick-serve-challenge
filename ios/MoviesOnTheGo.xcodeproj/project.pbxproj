@@ -12,6 +12,7 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2280C725A4E49FE6DDF4D0EC /* libPods-MoviesOnTheGo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 217D55506086ECB2C40389A9 /* libPods-MoviesOnTheGo.a */; };
+		277255B629F970DA00326E61 /* wmelon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277255B529F970DA00326E61 /* wmelon.swift */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		CCC98A9D14297A1F7D8530A6 /* libPods-MoviesOnTheGo-MoviesOnTheGoTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 43D24FF787E22DC08C11AB00 /* libPods-MoviesOnTheGo-MoviesOnTheGoTests.a */; };
 /* End PBXBuildFile section */
@@ -38,6 +39,8 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = MoviesOnTheGo/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = MoviesOnTheGo/main.m; sourceTree = "<group>"; };
 		217D55506086ECB2C40389A9 /* libPods-MoviesOnTheGo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MoviesOnTheGo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		277255B429F970DA00326E61 /* MoviesOnTheGo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MoviesOnTheGo-Bridging-Header.h"; sourceTree = "<group>"; };
+		277255B529F970DA00326E61 /* wmelon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = wmelon.swift; sourceTree = "<group>"; };
 		43D24FF787E22DC08C11AB00 /* libPods-MoviesOnTheGo-MoviesOnTheGoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MoviesOnTheGo-MoviesOnTheGoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = MoviesOnTheGo/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		84140D7351E2AFDFC713BBBE /* Pods-MoviesOnTheGo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoviesOnTheGo.release.xcconfig"; path = "Target Support Files/Pods-MoviesOnTheGo/Pods-MoviesOnTheGo.release.xcconfig"; sourceTree = "<group>"; };
@@ -117,6 +120,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				277255B529F970DA00326E61 /* wmelon.swift */,
 				F6B2530B298D6DB9007CD4F4 /* Fonts */,
 				13B07FAE1A68108700A75B9A /* MoviesOnTheGo */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
@@ -124,6 +128,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
+				277255B429F970DA00326E61 /* MoviesOnTheGo-Bridging-Header.h */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -217,7 +222,7 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						LastSwiftMigration = 1120;
+						LastSwiftMigration = 1420;
 					};
 				};
 			};
@@ -424,6 +429,7 @@
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
+				277255B629F970DA00326E61 /* wmelon.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -442,6 +448,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FAA128567A3A1BD574616A96 /* Pods-MoviesOnTheGo-MoviesOnTheGoTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = 4HN3F22KV3;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -470,6 +477,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 00495E8EDE1138CA6BE79515 /* Pods-MoviesOnTheGo-MoviesOnTheGoTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = 4HN3F22KV3;
@@ -513,6 +521,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = MoviesOnTheGo;
+				SWIFT_OBJC_BRIDGING_HEADER = "MoviesOnTheGo-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -540,6 +549,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = MoviesOnTheGo;
+				SWIFT_OBJC_BRIDGING_HEADER = "MoviesOnTheGo-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
