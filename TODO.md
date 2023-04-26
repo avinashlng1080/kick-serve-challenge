@@ -1,11 +1,11 @@
 - [x] Add Typescript
-- [ ] Add ESLINT rule to sort imports  
+- [x] Add ESLINT rule to sort imports  
 - [ ] Install WatermelonDB - that will ensure offline support  
 - [ ] Fetch next_movie_page only if we don't have it in the db.  Check the pages variable  
 - [ ] Use proper screen container with SafeAreaView and ScrollView to cater for all screen dimensions  
 - [ ] Nice to have - show the bottomBar Favorite icon bolder if we do have favorite movies  
 - [ ] Implement Details page  
-- [ ] Add .env file for keep the API key  
+- [x] Add .env file for keep the API key  
 - [ ] Test on both iOS and Android devices - If possible, test on tablets also.   
 - [ ] Create a Network manager  
 - [ ] Create a DB manager  
@@ -20,3 +20,5 @@
     
 - [ ] Enable Hermes for both platforms
 - [ ] React Native New Architecture 
+- [ ] Remove unused libs, files, etc. 
+- [ ] Fix all screens with SafeAreaView where necessary 

@@ -1,5 +1,5 @@
 interface OptionProps {
   name: string
   selected: boolean
-  onSelect: () => void
+  onSelect: (selection: string) => void
 }

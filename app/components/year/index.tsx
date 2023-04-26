@@ -1,19 +1,28 @@
-import { textInputStyles, textStyles } from 'lib/styles'
+import KSInput from '@components/ks_input'
+import { textStyles } from '@lib/styles'
+import { validateDate } from '@lib/time'
 import React from 'react'
-import { Text, TextInput, View } from 'react-native'
+import { Text, View } from 'react-native'
 
-const Year = () => {
-  //todo: maybe forwardRef to get the value of the input
-  return (
-    <View>
-      <Text style={textStyles.h2}>Year</Text>
-      <TextInput
-        keyboardType="number-pad"
-        style={textInputStyles.input}
-        maxLength={4}
-      />
-    </View>
-  )
+const yearInputProps = {
+    maxLength: 4,
+    placeholder: '1990'
+}
+
+type YearProps = {
+    onValueSet: (val: string) => void
+}
+const Year = ({ onValueSet }: YearProps) => {
+    return (
+        <View>
+            <Text style={textStyles.h2}>Year</Text>
+            <KSInput
+                textInputProps={yearInputProps}
+                validator={validateDate}
+                onValueSet={onValueSet}
+            />
+        </View>
+    )
 }
 
 export default Year

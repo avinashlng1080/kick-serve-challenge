@@ -1,6 +1,6 @@
 import { KSColors, KSSizes } from 'constants/theme'
 
-import React from 'react'
+import React, { useCallback } from 'react'
 import { StyleSheet, Text, TouchableOpacity } from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons'
 
@@ -15,11 +15,15 @@ const styles = StyleSheet.create({
   }
 })
 const SortOption = ({ name, selected, onSelect }: OptionProps) => {
+  const onPress = useCallback(() => {
+    onSelect(name)
+  }, [name, onSelect])
+
   return (
     <TouchableOpacity
       style={styles.sortOption}
       activeOpacity={0.7}
-      onPress={onSelect}
+      onPress={onPress}
     >
       <Text>{name}</Text>
       <Icon
