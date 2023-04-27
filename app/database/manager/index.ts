@@ -1,16 +1,17 @@
+import FavoriteModel from '@database/model/favorite'
+import GenreModel from '@database/model/genre'
+import MovieModel from '@database/model/movie'
+import SettingModel from '@database/model/setting'
+import { guard } from '@lib/guard'
 import { logError } from '@lib/log'
 import { Database } from '@nozbe/watermelondb'
 import SQLiteAdapter from '@nozbe/watermelondb/adapters/sqlite'
-import FavoriteModel from 'database/model/favorite'
-import GenreModel from 'database/model/genre'
-import MovieModel from 'database/model/movie'
-import SettingModel from 'database/model/setting'
 
 import migrations from '../migration'
 import { KS_SCHEMA } from '../schema'
 
 class DBManager {
-    public database: Database | undefined
+    private database: Database | undefined
 
     public init = async () => {
         await this.createDatabase()
@@ -47,6 +48,21 @@ class DBManager {
                 'An error occurred while creating a database in the DBManager',
                 e
             )
+        }
+    }
+
+    getDatabase = async () => {
+        try {
+            return guard(this.database, 'Database not initialized')
+        } catch (e) {
+            logError('getDatabase', e)
+
+            // let's try torecover from it and  to create the database again
+            const db = await this.createDatabase()
+            if (db) {
+                return db
+            }
+            return undefined
         }
     }
 }

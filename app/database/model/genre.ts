@@ -6,5 +6,6 @@ import Model from '@nozbe/watermelondb/Model'
 export default class GenreModel extends Model {
     static table = KS_DB_GENRE
 
-    @text('name') name!: string
+    @text('genre') genreName!: string
+    @text('genre_id') genreId!: string
 }

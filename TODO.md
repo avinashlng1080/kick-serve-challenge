@@ -22,3 +22,4 @@
 - [ ] React Native New Architecture https://reactnative.dev/docs/new-architecture-app-intro
 - [ ] Remove unused libs, files, etc. 
 - [ ] Fix all screens with SafeAreaView where necessary 
+- [ ] react-native-config... read it properly (natively) on iOS and Android 

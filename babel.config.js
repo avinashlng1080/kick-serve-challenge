@@ -19,7 +19,8 @@ module.exports = {
                     '@screens': './app/screens',
                     '@constants': './app/constants',
                     '@lib': './app/lib',
-                    '@database': './app/database'
+                    '@database': './app/database',
+                    '@typings': './app/typings'
                 }
             }
         ],
