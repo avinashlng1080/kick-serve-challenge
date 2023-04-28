@@ -25,8 +25,8 @@ This is the initial screen of the app. We want you to implement the design here:
 -[ ] The screen currently contains an empty state. If the list doesn't contain any results, let's keep showing the same empty state.
 -[x] The screen should display a list of movies that come from the [Movie Discover endpoint](https://developers.themoviedb.org/3/discover/movie-discover) (`/discover/movie`). Each movie in the list should contain the image (`poster_path`), the rating (`vote_average`), a comma-separated list of genres (`genre_ids`) and the release year (`release_date`).
 - [ ]Since the endpoint returns only ids, you'll need to get the full genre information from a different endpoint.
--[ ] Each movie should also contain a button to mark the movie as a favorite (or like if you will). Please see the screenshot for reference. Pressing this button should add/remove the movie to/from a list of favorite movies and store that information in the device's storage so that it can persist when the app is closed. If the movie is not in the favorites list, the button should be transparent as indicated by the last item in the screenshot (Plane). If the movie is in the list of favorites, the button should change to teal as indicated by the first 3 items in the screenshot.
--[ ] The list should support pagination. As you scroll, more items should be loaded in the background. This is usually called Infinite Scroll. The endpoint does support pagination.
+-[x] Each movie should also contain a button to mark the movie as a favorite (or like if you will). Please see the screenshot for reference. Pressing this button should add/remove the movie to/from a list of favorite movies and store that information in the device's storage so that it can persist when the app is closed. If the movie is not in the favorites list, the button should be transparent as indicated by the last item in the screenshot (Plane). If the movie is in the list of favorites, the button should change to teal as indicated by the first 3 items in the screenshot.
+-[x] The list should support pagination. As you scroll, more items should be loaded in the background. This is usually called Infinite Scroll. The endpoint does support pagination.
 -[ ] Once the settings screen is implemented, all the settings selected there, should affect the items displayed here. A user should be able to change the sorting (`sort_by`), filter by genres (`with_genres`), year (`year`) and duration (`with_runtime.gte` and `with_runtime.lte`).
 
 ### Settings
@@ -59,7 +59,7 @@ You can access this screen with the Favorites tab at the bottom. We want you to 
 #### Implementation Notes
 
 -[x] The title should be `Favorites`.
--[ ] The screen currently contains an empty state. If there are no movies marked as favorites, let's keep showing the same empty state.
--[ ] The screen should display a list of movies that have been marked as favorites at any point. Since we're storing that data in the device's storage, we need to read from that same storage to display the data here.
--[ ] The movies should be displayed in a 2-column grid. Each item on the grid should contain the image and the title of the movie that was added to Favorites. Please see the screenshot above.
--[ ] Each item should also contain a button to remove the item from the favorites list. The design should be similar to the button displayed in the Discover screen. When pressed, the movie should be removed from the list of favorites and the changes should be stored in the device's storage just like on the Discover screen.
+-[x] The screen currently contains an empty state. If there are no movies marked as favorites, let's keep showing the same empty state.
+-[x] The screen should display a list of movies that have been marked as favorites at any point. Since we're storing that data in the device's storage, we need to read from that same storage to display the data here.
+-[x] The movies should be displayed in a 2-column grid. Each item on the grid should contain the image and the title of the movie that was added to Favorites. Please see the screenshot above.
+-[x] Each item should also contain a button to remove the item from the favorites list. The design should be similar to the button displayed in the Discover screen. When pressed, the movie should be removed from the list of favorites and the changes should be stored in the device's storage just like on the Discover screen.
