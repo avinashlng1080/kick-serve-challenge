@@ -6,10 +6,12 @@ import { guard } from '@lib/guard'
 import { logError } from '@lib/log'
 import { Database } from '@nozbe/watermelondb'
 import SQLiteAdapter from '@nozbe/watermelondb/adapters/sqlite'
+import logger from '@nozbe/watermelondb/utils/common/logger'
 
 import migrations from '../migration'
 import { KS_SCHEMA } from '../schema'
 
+logger.silence()
 class DBManager {
     private database: Database | undefined
 
