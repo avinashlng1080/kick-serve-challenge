@@ -11,15 +11,18 @@
   - [x] Genre
   - [x] Movie has a 1:1 relationship with Favorite  and Setting is standalone.
   - [x] The Favorite table would only contain the movie_title
+- [x] A conflict arose in the NPM deps with regards to watermelondb and we need to do npm force install <<<<<
+- [x] React Native New Architecture https://reactnative.dev/docs/new-architecture-app-intro
+- [x] Create a Network manager
 - [ ] Fetch next_movie_page only if we don't have it in the db.  Check the pages variable  
 - [ ] Use proper screen container with SafeAreaView and ScrollView to cater for all screen dimensions  
-- [ ] Nice to have - show the bottomBar Favorite icon bolder if we do have favorite movies  
+- [ ] Nice to have - show the bottomBar Favorite icon bolder if we do have favorite movies  ???
 - [ ] Implement Details page
 - [ ] Test on both iOS and Android devices - If possible, test on tablets also.   
-- [ ] Create a Network manager
 - [ ] Write proper unit tests - check for empty and filled states  
 - [ ] Perhaps, some API call will occur in parallel and update the movie info separately from the main flow.
-- [ ] React Native New Architecture https://reactnative.dev/docs/new-architecture-app-intro
 - [ ] Remove unused libs, files, etc. 
 - [ ] Fix all screens with SafeAreaView where necessary 
 - [ ] react-native-config... read it properly (natively) on iOS and Android 
+- [ ] Let James know of the env file so that the app runs smoothly
+- [ ] need to find a clever way to preload image https://github.com/DylanVann/react-native-fast-image#fastimagepreload-source--void

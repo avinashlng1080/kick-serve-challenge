@@ -10,11 +10,12 @@ import MovieModel from 'database/model/movie'
  */
 export const createMapByKey = <T>(
     array: T[],
-    key: (item: T) => number | string
+    key: string | number
 ): Map<number | string, T> => {
     const map = new Map<number | string, T>()
     for (const item of array) {
-        map.set(key(item), item)
+        // @ts-ignore
+        map.set(item[key], item)
     }
     return map
 }
@@ -55,14 +56,16 @@ export const getCreateOrUpdateRecords = (
         }
     }
 
-    movieRecords.forEach((movie) => {
-        if (movieRawMap.has(movie.movieId)) {
-            // movie already exists in the database => update operation
-            updateRaws.push(movieRawMap.get(movie.movieId)!)
-            updateRecordMap.set(movie.movieId, movie)
+    movies.forEach((movie) => {
+        // do our records have this movie ?
+        const existingRecord = movieRecords.find((m) => m.id === `${movie.id}`)
+        if (existingRecord) {
+            // update operation
+            updateRaws.push(movieRawMap.get(existingRecord.movieId)!)
+            updateRecordMap.set(existingRecord.movieId, existingRecord)
         } else {
-            // movie does not exist in the database => create operation
-            createRaws.push(movieRawMap.get(movie.movieId) as DiscoverMovie)
+            // create operation
+            createRaws.push(movieRawMap.get(movie.id)!)
         }
     })
 

@@ -13,10 +13,10 @@ import { KS_SCHEMA } from '../schema'
 class DBManager {
     private database: Database | undefined
 
-    public init = async () => {
-        await this.createDatabase()
+    public init = () => {
+        this.createDatabase()
     }
-    private createDatabase = async () => {
+    private createDatabase = () => {
         try {
             const adapter = new SQLiteAdapter({
                 schema: KS_SCHEMA,
@@ -51,14 +51,13 @@ class DBManager {
         }
     }
 
-    getDatabase = async () => {
+    getDatabase = () => {
         try {
             return guard(this.database, 'Database not initialized')
         } catch (e) {
-            logError('getDatabase', e)
-
+            logError('An error occurred while getting the database', e)
             // let's try torecover from it and  to create the database again
-            const db = await this.createDatabase()
+            const db = this.createDatabase()
             if (db) {
                 return db
             }

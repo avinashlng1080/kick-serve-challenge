@@ -15,6 +15,7 @@ import {
 } from 'react-native'
 
 const EMPTY_STRING = ''
+const EMPTY_ARR: number[] = []
 
 const styles = StyleSheet.create({
     wrapper: {
@@ -32,19 +33,37 @@ const styles = StyleSheet.create({
 
 //todo: make the screen scroll to the selected text input
 export default function Settings() {
-    const [year, setYear] = useState(EMPTY_STRING)
+    const [year, setYear] = useState(EMPTY_STRING) // todo: to be initailized from db
+    const [sort, setSort] = useState(EMPTY_STRING) // todo: to be initailized from db
+    const [minDuration, setMinDuration] = useState(EMPTY_STRING) // todo: to be initailized from db
+    const [maxDuration, setMaxDuration] = useState(EMPTY_STRING) // todo: to be initailized from db
+    const [genreIds, setGenreIds] = useState<number[]>(EMPTY_ARR) // todo: to be initailized from db
 
     const onYearSet = useCallback((val: string) => {
         setYear(val)
     }, [])
 
-    // Handling the appearance of the Software Keyboard and sticking the Save button just to the top of the keyboard
-    const keyboardHeight = useKeyboardHeight()
+    const onSort = useCallback((sortBy: string) => {
+        setSort(sortBy)
+    }, [])
+
+    const onGenreSelection = useCallback((ids: number[]) => {
+        setGenreIds(ids)
+    }, [])
+
+    const onSetDuration = useCallback((min: string, max: string) => {
+        setMinDuration(min)
+        setMaxDuration(max)
+    }, [])
+
+    const onSave = useCallback(() => {
+        //todo : save settings
+    }, [])
 
     return (
         <KeyboardAvoidingView
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-            style={[containerStyles]}
+            style={containerStyles}
         >
             <ScrollView
                 contentContainerStyle={styles.contentContainerStyle}
@@ -53,13 +72,13 @@ export default function Settings() {
                 }
             >
                 <View style={styles.wrapper}>
-                    <SortSection />
-                    <GenreSection />
+                    <SortSection onSort={onSort} />
+                    <GenreSection onGenreSelection={onGenreSelection} />
                     <Year onValueSet={onYearSet} />
-                    <Runtime />
+                    <Runtime onSetDuration={onSetDuration} />
                 </View>
             </ScrollView>
-            <SaveButton offSet={keyboardHeight} />
+            <SaveButton onSave={onSave} />
         </KeyboardAvoidingView>
     )
 }

@@ -13,39 +13,47 @@ const styles = StyleSheet.create({
     }
 })
 
-type RunTimeProps = {}
 //todo: UX to show a toast indicating the user that a max of 300 minutes is allowed
+
+type RunTimeProps = {
+    onSetDuration: (min: string, max: string) => void
+}
 const EMPTY_VALUE = ''
-const RunTime = ({}: RunTimeProps) => {
+const RunTime = ({ onSetDuration }: RunTimeProps) => {
     const [minDuration, setMinDuration] = useState(EMPTY_VALUE)
     const [maxDuration, setMaxDuration] = useState(EMPTY_VALUE)
 
-    const validateMinMax = useCallback((min: string, max: string) => {
-        // you can have only min or only max, or both
-        if ((min && !max) || (!min && max)) {
-            return true
-        }
-
-        if (min && max) {
-            const isValid = parseInt(min, 10) <= parseInt(max, 10)
-            if (!isValid) {
-                return Alert.alert(
-                    'Invalid duration',
-                    'The From value cannot be higher than the To value',
-                    [
-                        {
-                            text: 'OK',
-                            onPress: () => {
-                                console.log('>>>  here')
-                                setMinDuration(EMPTY_VALUE)
-                                setMaxDuration(EMPTY_VALUE)
-                            }
-                        }
-                    ]
-                )
+    const validateMinMax = useCallback(
+        (min: string, max: string) => {
+            // you can have only min or only max, or both
+            if ((min && !max) || (!min && max)) {
+                return true
             }
-        }
-    }, [])
+
+            if (min && max) {
+                const isValid = parseInt(min, 10) <= parseInt(max, 10)
+
+                if (!isValid) {
+                    return Alert.alert(
+                        'Invalid duration',
+                        'The From value cannot be higher than the To value',
+                        [
+                            {
+                                text: 'OK',
+                                onPress: () => {
+                                    setMinDuration(EMPTY_VALUE)
+                                    setMaxDuration(EMPTY_VALUE)
+                                }
+                            }
+                        ]
+                    )
+                } else {
+                    onSetDuration(min, max)
+                }
+            }
+        },
+        [onSetDuration]
+    )
 
     return (
         <View>
@@ -56,9 +64,7 @@ const RunTime = ({}: RunTimeProps) => {
                         maxLength: 3,
                         placeholder: 'From',
                         placeholderTextColor: KSColors.neutral,
-                        onEndEditing: () => {
-                            validateMinMax(minDuration, maxDuration)
-                        },
+                        onEndEditing: validateMinMax,
                         value: minDuration
                     }}
                     validator={validateDuration}
@@ -70,9 +76,7 @@ const RunTime = ({}: RunTimeProps) => {
                         maxLength: 3,
                         placeholder: 'To',
                         placeholderTextColor: KSColors.neutral,
-                        onEndEditing: () => {
-                            validateMinMax(minDuration, maxDuration)
-                        },
+                        onEndEditing: validateMinMax,
                         value: maxDuration
                     }}
                     validator={validateDuration}

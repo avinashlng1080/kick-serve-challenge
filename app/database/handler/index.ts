@@ -83,7 +83,7 @@ class DatabaseHandler {
 
             // each movie has a unique id, so we create a map as it provides constant time complexity for lookups
             const moviesMap: Map<number | string, DiscoverMovie> =
-                createMapByKey(movies, (movie) => movie.id)
+                createMapByKey(movies, 'id')
 
             // retrieve existing records from the KS_DB_MOVIE table
             const existingMovies = await getExistingRecords<MovieModel>(

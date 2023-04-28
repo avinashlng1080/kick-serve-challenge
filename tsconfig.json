@@ -11,6 +11,8 @@
       "@lib/*": ["app/lib/*"],
       "@database/*": ["app/database/*"],
       "@typings/*": ["app/typings/*"],
+      "@network/*": ["app/network/*"],
+      "@hook/*": ["app/hook/*"],
     },
     "experimentalDecorators": true
   },

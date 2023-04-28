@@ -18,14 +18,15 @@ export const KS_SCHEMA = appSchema({
                 { name: 'title', type: 'string', isIndexed: true }, //fixme: include tests and appropriate fields
                 { name: 'vote_average', type: 'number' }, // rating
                 { name: 'overview', type: 'string' }, // overview
-                { name: 'movie_id', type: 'number' } // id from Rest API
+                { name: 'movie_id', type: 'string' } // id from Rest API
             ]
         }),
         tableSchema({
             name: KS_DB_FAVORITE, // might seem redundant but it's not; we can augment this table with more fields in the future
             columns: [
                 { name: 'movie_title', type: 'string' },
-                { name: 'movie_id', type: 'number' }
+                { name: 'poster_path', type: 'string' },
+                { name: 'movie_id', type: 'string' }
             ]
         }),
         tableSchema({

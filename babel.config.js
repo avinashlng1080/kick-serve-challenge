@@ -20,7 +20,9 @@ module.exports = {
                     '@constants': './app/constants',
                     '@lib': './app/lib',
                     '@database': './app/database',
-                    '@typings': './app/typings'
+                    '@typings': './app/typings',
+                    '@network': './app/network',
+                    '@hook': './app/hook'
                 }
             }
         ],

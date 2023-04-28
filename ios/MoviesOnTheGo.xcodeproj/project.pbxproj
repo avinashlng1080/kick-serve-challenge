@@ -13,6 +13,7 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2280C725A4E49FE6DDF4D0EC /* libPods-MoviesOnTheGo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 217D55506086ECB2C40389A9 /* libPods-MoviesOnTheGo.a */; };
 		277255B629F970DA00326E61 /* wmelon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277255B529F970DA00326E61 /* wmelon.swift */; };
+		277255BC29FABF1700326E61 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F6B25310298F5AC9007CD4F4 /* Ionicons.ttf */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		CCC98A9D14297A1F7D8530A6 /* libPods-MoviesOnTheGo-MoviesOnTheGoTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 43D24FF787E22DC08C11AB00 /* libPods-MoviesOnTheGo-MoviesOnTheGoTests.a */; };
 /* End PBXBuildFile section */
@@ -250,6 +251,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				277255BC29FABF1700326E61 /* Ionicons.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

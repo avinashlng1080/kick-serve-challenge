@@ -12,22 +12,37 @@ const styles = StyleSheet.create({
     }
 })
 
-type GenreSectionProps = {}
+type GenreSectionProps = {
+    onGenreSelection: (genreIds: number[]) => void
+}
 
-const GenreSection = ({}: GenreSectionProps) => {
+const GenreSection = ({ onGenreSelection }: GenreSectionProps) => {
     const [selectedGenres, setSelectedGenres] = useState(new Set())
 
-    const onSelect = useCallback((selectedGenre: string) => {
-        setSelectedGenres((prevSelectedGenres) => {
-            const newSelection = new Set(prevSelectedGenres) // a new set so that React recognizes a state change
+    const onSelect = useCallback(
+        (selectedGenre: string) => {
+            const newSelection = new Set(selectedGenres) // a new set so that React recognizes a state change
             if (newSelection.has(selectedGenre)) {
                 newSelection.delete(selectedGenre)
             } else {
                 newSelection.add(selectedGenre)
             }
-            return newSelection
-        })
-    }, [])
+            setSelectedGenres(newSelection)
+            onGenreSelection(Array.from(newSelection) as number[])
+            // return newSelection
+
+            // setSelectedGenres((prevSelectedGenres) => {
+            //     const newSelection = new Set(prevSelectedGenres) // a new set so that React recognizes a state change
+            //     if (newSelection.has(selectedGenre)) {
+            //         newSelection.delete(selectedGenre)
+            //     } else {
+            //         newSelection.add(selectedGenre)
+            //     }
+            //     return newSelection
+            // })
+        },
+        [selectedGenres, onGenreSelection]
+    )
 
     return (
         <View>

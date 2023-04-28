@@ -4,13 +4,19 @@ import { Text, View } from 'react-native'
 
 import SortOption from '../sort_options'
 
-type SortSectionProps = {}
-const SortSection = ({}: SortSectionProps) => {
+type SortSectionProps = {
+    onSort: (name: string) => void
+}
+const SortSection = ({ onSort }: SortSectionProps) => {
     const [sortBy, setSortBy] = useState('')
 
-    const onSelect = useCallback((name: string) => {
-        setSortBy(name)
-    }, [])
+    const onSelect = useCallback(
+        (name: string) => {
+            setSortBy(name)
+            onSort(name)
+        },
+        [onSort]
+    )
 
     return (
         <View>

@@ -38,14 +38,9 @@ export const getMovies = async (
     const response = await api.get(route)
 
     if (response.ok) {
-        logInfo('getMovies', response?.data?.results?.length)
-        // we are good to save to database
         const movies = response?.data?.results
-        //todo: save to dataBASE
-
         if (movies.length) {
             const movieHandler = await DBHandler.handleMovies(movies)
-            console.log('>>>  movieHandler', { movieHandler })
             return movieHandler
         }
     }

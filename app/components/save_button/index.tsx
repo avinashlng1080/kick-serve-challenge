@@ -1,17 +1,17 @@
 import { KSColors, KSFontWeights, KSSizes } from 'constants/theme'
 
+import useKeyboardHeight from '@hook/useKeyboardHeight'
 import { useNavigation } from '@react-navigation/native'
-import React from 'react'
+import React, { useCallback } from 'react'
 import {
     Animated,
     Platform,
     SafeAreaView,
     StyleSheet,
     Text,
-    TouchableHighlight
+    TouchableHighlight,
+    View
 } from 'react-native'
-
-import Value = Animated.Value
 
 const styles = StyleSheet.create({
     button: {
@@ -38,17 +38,28 @@ const styles = StyleSheet.create({
         fontWeight: KSFontWeights.bold
     }
 })
+
 type SaveButtonProps = {
-    offSet: Value
+    onSave: () => void
 }
-const SaveButton = ({ offSet }: SaveButtonProps) => {
+const SaveButton = ({ onSave }: SaveButtonProps) => {
     const navigation = useNavigation()
 
+    // Handling the appearance of the Software Keyboard and sticking the Save button just to the top of the keyboard
+    const keyboardHeight = useKeyboardHeight()
+
+    const goBack = useCallback(() => {
+        //todo: await here and save page to 1 in the db
+        onSave()
+        return navigation.goBack()
+    }, [navigation, onSave])
+
     return (
-        <Animated.View
+        <View
             style={[
-                styles.buttonContainer,
-                Platform.OS === 'ios' && Boolean(offSet) && { bottom: offSet } //fixme: test on physical Android phone
+                styles.buttonContainer
+                // Platform.OS === 'ios' &&
+                //     Boolean(keyboardHeight) && { bottom: keyboardHeight } //fixme: test on physical Android phone
             ]}
         >
             <SafeAreaView>
@@ -56,15 +67,12 @@ const SaveButton = ({ offSet }: SaveButtonProps) => {
                     activeOpacity={0.7}
                     underlayColor={KSColors.neutral}
                     style={styles.button}
-                    onPress={() => {
-                        //fixme: save settings
-                        navigation.goBack()
-                    }}
+                    onPress={goBack}
                 >
                     <Text style={styles.buttonText}>Save</Text>
                 </TouchableHighlight>
             </SafeAreaView>
-        </Animated.View>
+        </View>
     )
 }
 

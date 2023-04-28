@@ -1,13 +1,6 @@
-import {
-    KS_DB_FAVORITE,
-    KS_DB_MOVIE,
-    KS_SETTINGS_IDENTIFIERS
-} from '@constants/database'
+import { KS_DB_MOVIE } from '@constants/database'
 import MovieModel from '@database/model/movie'
 import { FieldMapper, KS_DB_TABLES, OperationType } from '@typings/database'
-import FavoriteModel from 'database/model/favorite'
-import GenreModel from 'database/model/genre'
-import SettingModel from 'database/model/setting'
 
 import type { Database, Model } from '@nozbe/watermelondb'
 
@@ -18,7 +11,7 @@ export const transformMovieRecord = (
     recordMovie?: MovieModel
 ): Promise<MovieModel> => {
     const fieldsMapper = (movie: MovieModel) => {
-        movie.movieId = rawMovie.id
+        movie.movieId = `${rawMovie.id}`
         movie.genreIds = rawMovie.genre_ids.join(',')
         movie.posterPath = rawMovie.poster_path
         movie.releaseDate = rawMovie.release_date

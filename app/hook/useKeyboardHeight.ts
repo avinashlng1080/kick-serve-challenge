@@ -1,8 +1,8 @@
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect, useState } from 'react'
 import { Animated, Keyboard, KeyboardEvent, Platform } from 'react-native'
 
 const useKeyboardHeight = () => {
-    const keyboardHeight = useRef(new Animated.Value(0)).current
+    const [keyboardHeight] = useState(() => new Animated.Value(0))
 
     useEffect(() => {
         const keyboardWillShow = (e: KeyboardEvent) => {
