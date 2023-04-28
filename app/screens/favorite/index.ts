@@ -4,7 +4,7 @@ import { withDatabase } from '@nozbe/watermelondb/DatabaseProvider'
 import withObservables from '@nozbe/with-observables'
 import FavoriteModel from 'database/model/favorite'
 
-import Favorites from './Favorites'
+import Favorites from './favorites'
 
 const enhanced = withObservables(
     [],
