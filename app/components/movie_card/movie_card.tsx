@@ -3,9 +3,8 @@ import PosterImage from '@components/poster_image'
 import Rating from '@components/rating'
 import { convertToFiveStars, getReleasedYear } from '@lib/general'
 import { textStyles } from '@lib/styles'
-import FavoriteModel from 'database/model/favorite'
 import MovieModel from 'database/model/movie'
-import React, { useState } from 'react'
+import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 
 const POSTER_WIDTH = 330 / 2
@@ -46,9 +45,8 @@ const styles = StyleSheet.create({
 
 type MovieCardProps = {
     movie: MovieModel
-    favorite: FavoriteModel[] | undefined
 }
-const MovieCard = ({ movie, favorite }: MovieCardProps) => {
+const MovieCard = ({ movie }: MovieCardProps) => {
     const { posterPath, title, movieId, voteAverage, releaseDate } = movie
 
     return (
@@ -56,7 +54,7 @@ const MovieCard = ({ movie, favorite }: MovieCardProps) => {
             <View style={styles.posterContainer}>
                 <PosterImage posterPath={posterPath} />
                 <FavoriteIndicator
-                    indicatorOn={!!(favorite && favorite?.length > 0)}
+                    indicatorOn={movie.isFavorite}
                     movieId={movieId}
                     title={title}
                     posterPath={posterPath}

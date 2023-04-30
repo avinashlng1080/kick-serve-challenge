@@ -18,6 +18,7 @@ export const transformMovieRecord = (
         movie.title = rawMovie.title
         movie.voteAverage = rawMovie.vote_average
         movie.overview = rawMovie.overview
+        //todo: should we add the is_favorite field here?
     }
 
     return prepareBaseRecord(

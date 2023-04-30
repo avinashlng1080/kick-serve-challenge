@@ -1,13 +1,13 @@
 import EmptyState from '@components/EmptyState'
 import FavoriteCard from '@components/favorite_card'
 import { SCREENS } from '@constants/screen'
-import FavoriteModel from '@database/model/favorite'
 import { containerStyles } from '@lib/styles'
 import { KSNavigation } from '@typings/general'
+import MovieModel from 'database/model/movie'
 import React, { useCallback, useEffect, useState } from 'react'
 import { FlatList, StyleSheet, View } from 'react-native'
 
-const keyExtractor = (item: FavoriteModel) => item.id
+const keyExtractor = (item: MovieModel) => item.title
 
 const styles = StyleSheet.create({
     container: {
@@ -29,23 +29,20 @@ const styles = StyleSheet.create({
 
 type FavoritesProps = {
     navigation: KSNavigation
-    favorites: FavoriteModel[]
+    favorites: MovieModel[]
 }
 const Favorites = ({ navigation, favorites }: FavoritesProps) => {
     const [isEmptyState, setIsEmptyState] = useState(favorites.length === 0)
 
-    const renderFavoriteCard = useCallback(
-        ({ item }: { item: FavoriteModel }) => {
-            return (
-                <FavoriteCard
-                    movieId={item.movieId}
-                    posterPath={item.posterPath}
-                    title={item.movieTitle}
-                />
-            )
-        },
-        []
-    )
+    const renderFavoriteCard = useCallback(({ item }: { item: MovieModel }) => {
+        return (
+            <FavoriteCard
+                movieId={item.movieId}
+                posterPath={item.posterPath}
+                title={item.title}
+            />
+        )
+    }, [])
 
     useEffect(() => {
         setIsEmptyState(favorites.length === 0)

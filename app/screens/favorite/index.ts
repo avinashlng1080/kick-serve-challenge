@@ -1,8 +1,8 @@
-import { KS_DB_FAVORITE } from '@constants/database'
-import { Database } from '@nozbe/watermelondb'
+import { KS_DB_MOVIE } from '@constants/database'
+import { Database, Q } from '@nozbe/watermelondb'
 import { withDatabase } from '@nozbe/watermelondb/DatabaseProvider'
 import withObservables from '@nozbe/with-observables'
-import FavoriteModel from 'database/model/favorite'
+import MovieModel from 'database/model/movie'
 
 import Favorites from './favorites'
 
@@ -10,8 +10,8 @@ const enhanced = withObservables(
     [],
     ({ database }: { database: Database }) => ({
         favorites: database
-            .get<FavoriteModel>(KS_DB_FAVORITE)
-            .query()
+            .get<MovieModel>(KS_DB_MOVIE)
+            .query(Q.where('is_favorite', true))
             .observeWithColumns(['movie_id', 'movie_title', 'poster_path'])
     })
 )

@@ -1,4 +1,3 @@
-import FavoriteModel from '@database/model/favorite'
 import GenreModel from '@database/model/genre'
 import MovieModel from '@database/model/movie'
 import SettingModel from '@database/model/setting'
@@ -36,12 +35,7 @@ class DBManager {
 
             const database = new Database({
                 adapter,
-                modelClasses: [
-                    SettingModel,
-                    FavoriteModel,
-                    MovieModel,
-                    GenreModel
-                ]
+                modelClasses: [SettingModel, MovieModel, GenreModel]
             })
             this.database = database
             return database
