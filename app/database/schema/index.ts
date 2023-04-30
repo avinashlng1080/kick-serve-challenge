@@ -14,7 +14,7 @@ export const KS_SCHEMA = appSchema({
                 { name: 'vote_average', type: 'number' }, // rating
                 { name: 'overview', type: 'string' }, // overview
                 { name: 'movie_id', type: 'string' }, // id from Rest API
-                { name: 'is_favorite', type: 'string' } // updated locally
+                { name: 'is_favorite', type: 'boolean' } // updated locally
             ]
         }),
         // tableSchema({

@@ -1,7 +1,7 @@
-import { KS_DB_FAVORITE } from 'constants/database'
+import { KS_DB_MOVIE } from 'constants/database'
 
 import { Database, Q } from '@nozbe/watermelondb'
-import FavoriteModel from 'database/model/favorite'
+import MovieModel from 'database/model/movie'
 import { logError } from 'lib/log'
 
 export const amendFavorite = async (
@@ -12,31 +12,20 @@ export const amendFavorite = async (
     isFavorite: boolean
 ) => {
     try {
-        if (!isFavorite) {
-            // remove from favorite table
-            const favRecord = await database
-                .get<FavoriteModel>(KS_DB_FAVORITE)
-                .query(Q.where('movie_id', movieId))
+        // find the movie record
+        const records = await database
+            .get<MovieModel>(KS_DB_MOVIE)
+            .query(Q.where('movie_id', movieId), Q.take(1))
 
-            if (favRecord?.[0]) {
-                await database.write(async () => {
-                    await favRecord?.[0].destroyPermanently()
+        const movieRecord = records?.[0]
+
+        if (movieRecord) {
+            await database.write(async () => {
+                await movieRecord.update((movie: MovieModel) => {
+                    movie.isFavorite = isFavorite
                 })
-            }
-            return
+            })
         }
-
-        const newFavorite = await database.write(async () => {
-            const favRecord = await database
-                .get<FavoriteModel>(KS_DB_FAVORITE)
-                .create((fav) => {
-                    fav.movieId = movieId
-                    fav.movieTitle = movieTitle
-                    fav.posterPath = posterPath
-                })
-
-            return favRecord
-        })
     } catch (e) {
         logError('amendFavorite ', movieTitle, e)
     }
