@@ -17,5 +17,5 @@ export default class FavoriteModel extends Model {
 
     @text('poster_path') posterPath!: string // image
 
-    @relation(KS_DB_MOVIE, 'id') movie!: Relation<MovieModel>
+    @relation(KS_DB_MOVIE, 'movie_id') movie!: Relation<MovieModel>
 }

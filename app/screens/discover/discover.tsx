@@ -1,13 +1,13 @@
 import EmptyState from '@components/EmptyState'
-import MovieCard from '@components/movie_card'
 import { SCREENS } from '@constants/screen'
 import MovieModel from '@database/model/movie'
 import { containerStyles } from '@lib/styles'
 import { getMovies } from '@network/client'
 import NetInfo from '@react-native-community/netinfo'
 import React, { useCallback, useEffect, useState } from 'react'
-import { ActivityIndicator, FlatList, StyleSheet, View } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 
+import KSList from './ks_list'
 const keyExtractor = (item: MovieModel) => item.id
 
 const styles = StyleSheet.create({
@@ -27,8 +27,9 @@ const styles = StyleSheet.create({
 type DiscoverProps = {
     navigation: any //todo: avoid type any
     movies: MovieModel[]
+    favoriteIds: string[]
 }
-const Discover = ({ navigation, movies }: DiscoverProps) => {
+const Discover = ({ navigation, movies, favoriteIds }: DiscoverProps) => {
     const [loading, setLoading] = useState(false)
     const [page, setPage] = useState(1) //fixme to be initialized with value from db
 
@@ -58,10 +59,6 @@ const Discover = ({ navigation, movies }: DiscoverProps) => {
         setLoading(false)
     }, [page])
 
-    const renderMovieCard = useCallback(({ item }: { item: MovieModel }) => {
-        return <MovieCard movie={item} />
-    }, [])
-
     useEffect(() => {
         // retrieves all movies - without filter for the time being
         getMovies()
@@ -78,18 +75,7 @@ const Discover = ({ navigation, movies }: DiscoverProps) => {
                     onAction={() => navigation.navigate(SCREENS.SETTINGS)}
                 />
             ) : (
-                <FlatList
-                    contentContainerStyle={styles.fullWidth}
-                    style={styles.padded}
-                    data={movies}
-                    keyExtractor={keyExtractor}
-                    renderItem={renderMovieCard}
-                    onEndReached={fetchNextPage}
-                    onEndReachedThreshold={0.8}
-                    ListFooterComponent={
-                        <ActivityIndicator animating={loading} />
-                    }
-                />
+                <KSList movies={movies} favoriteIds={favoriteIds} />
             )}
         </View>
     )
