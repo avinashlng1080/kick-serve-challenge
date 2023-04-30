@@ -4,11 +4,10 @@ import MovieModel from '@database/model/movie'
 import { containerStyles } from '@lib/styles'
 import { getMovies } from '@network/client'
 import NetInfo from '@react-native-community/netinfo'
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { StyleSheet, View } from 'react-native'
 
 import KSList from './ks_list'
-const keyExtractor = (item: MovieModel) => item.id
 
 const styles = StyleSheet.create({
     container: {
@@ -30,9 +29,6 @@ type DiscoverProps = {
     favoriteIds: string[]
 }
 const Discover = ({ navigation, movies, favoriteIds }: DiscoverProps) => {
-    const [loading, setLoading] = useState(false)
-    const [page, setPage] = useState(1) //fixme to be initialized with value from db
-
     // NETWORK REACHABILITY - we fetch the movies once we get back internet connection
     useEffect(() => {
         const netListner = NetInfo.addEventListener((state) => {
@@ -43,21 +39,6 @@ const Discover = ({ navigation, movies, favoriteIds }: DiscoverProps) => {
 
         return () => netListner()
     }, [])
-
-    const fetchNextPage = useCallback(() => {
-        setLoading(true)
-        const nextPage = page + 1
-        getMovies(
-            undefined,
-            undefined,
-            nextPage,
-            undefined,
-            undefined,
-            undefined
-        )
-        setPage(nextPage)
-        setLoading(false)
-    }, [page])
 
     useEffect(() => {
         // retrieves all movies - without filter for the time being
