@@ -1,10 +1,16 @@
-import { KS_DB_MOVIE } from 'constants/database'
+import { KS_DB_FAVORITE, KS_DB_MOVIE } from 'constants/database'
 
-import { field, text } from '@nozbe/watermelondb/decorators'
-import Model from '@nozbe/watermelondb/Model'
+import { Relation } from '@nozbe/watermelondb'
+import { field, relation, text } from '@nozbe/watermelondb/decorators'
+import Model, { Associations } from '@nozbe/watermelondb/Model'
+
+import FavoriteModel from './favorite'
 
 export default class MovieModel extends Model {
     static table = KS_DB_MOVIE
+    static associations: Associations = {
+        [KS_DB_FAVORITE]: { type: 'has_many', foreignKey: 'movie_id' }
+    }
 
     @text('genre_ids') genreIds!: string // a comma-separated list of genres
 
@@ -19,4 +25,6 @@ export default class MovieModel extends Model {
     @text('overview') overview!: string // overview
 
     @field('movie_id') movieId!: string // id from Rest API
+
+    @relation(KS_DB_FAVORITE, 'movie_id') favorite!: Relation<FavoriteModel>
 }
