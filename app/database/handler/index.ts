@@ -56,13 +56,16 @@ class DatabaseHandler {
         // // update operation
         if (updateRaws?.length) {
             const recordPromises = updateRaws.map((updraw) => {
-                const existingRecord = updateRecordMap.get(updraw.id)
-                return transformer(
-                    OperationType.UPDATE,
-                    database,
-                    updraw,
-                    existingRecord
-                )
+                const updateRawFromMap = updateRecordMap.get(updraw.id)
+                if (updateRawFromMap) {
+                    const existingRecord = updateRecordMap.get(updraw.id)
+                    return transformer(
+                        OperationType.UPDATE,
+                        database,
+                        updraw,
+                        existingRecord
+                    )
+                }
             })
 
             preparedRecords = preparedRecords.concat(recordPromises)
@@ -73,17 +76,17 @@ class DatabaseHandler {
         return results
     }
 
-    async handleMovies(movies: DiscoverMovie[]): Promise<Model[]> {
+    async handleMovies(rawMovies: DiscoverMovie[]): Promise<Model[]> {
         try {
             // early guard to throw against empty movies array
-            guard(movies, 'handleMovies - Empty movies array')
+            guard(rawMovies, 'handleMovies - Empty movies array')
             const database = await DBManager.getDatabase()
             // early guard to throw against database not being initialized
             guard(database, 'handleMovies - Database not initialized')
 
             // each movie has a unique id, so we create a map as it provides constant time complexity for lookups
             const moviesMap: Map<number | string, DiscoverMovie> =
-                createMapByKey(movies, 'id')
+                createMapByKey(rawMovies, 'id')
 
             // retrieve existing records from the KS_DB_MOVIE table
             const existingMovies = await getExistingRecords<MovieModel>(
@@ -92,7 +95,7 @@ class DatabaseHandler {
             )
 
             const { createRaws, updateRaws, updateRecordMap } =
-                getCreateOrUpdateRecords(movies, existingMovies, moviesMap)
+                getCreateOrUpdateRecords(rawMovies, existingMovies, moviesMap)
 
             const models = await this.prepareRecords(
                 database!,
