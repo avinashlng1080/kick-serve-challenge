@@ -1,5 +1,4 @@
-import { KS_DB_FAVORITE } from 'constants/database'
-
+import { KS_DB_FAVORITE } from '@constants/database'
 import { field, text } from '@nozbe/watermelondb/decorators'
 import Model from '@nozbe/watermelondb/Model'
 

@@ -1,5 +1,7 @@
 import { KS_DB_TABLES } from '@typings/database'
+import { movieComparator } from 'database/comparator'
 import MovieModel from 'database/model/movie'
+import { logError } from 'lib/log'
 
 /**
  * Creates a Map object from an array of objects with a specified key function.
@@ -10,12 +12,12 @@ import MovieModel from 'database/model/movie'
  */
 export const createMapByKey = <T>(
     array: T[],
-    key: string | number
+    key: string
 ): Map<number | string, T> => {
     const map = new Map<number | string, T>()
     for (const item of array) {
         // @ts-ignore
-        map.set(item[key], item)
+        map.set(`${item[key]}`, item)
     }
     return map
 }
@@ -56,18 +58,32 @@ export const getCreateOrUpdateRecords = (
         }
     }
 
-    movies.forEach((movie) => {
-        // do our records have this movie ?
-        const existingRecord = movieRecords.find((m) => m.id === `${movie.id}`)
-        if (existingRecord) {
-            // update operation
-            updateRaws.push(movieRawMap.get(existingRecord.movieId)!)
-            updateRecordMap.set(existingRecord.movieId, existingRecord)
-        } else {
-            // create operation
-            createRaws.push(movieRawMap.get(movie.id)!)
-        }
-    })
+    try {
+        movies.forEach((rawMovie) => {
+            // do our records have this movie ?
+            const recordInDB = movieRecords.find((m: MovieModel) =>
+                movieComparator(rawMovie, m)
+            )
+            const rawKey = `${rawMovie.id}`
+            const rawMovieInMap = movieRawMap.get(rawKey)
 
-    return { createRaws, updateRaws, updateRecordMap }
+            if (recordInDB?.movieId && rawMovieInMap) {
+                // update operation
+                updateRaws.push(rawMovieInMap)
+                updateRecordMap.set(recordInDB.movieId, recordInDB)
+            } else if (rawMovieInMap) {
+                // create operation
+                createRaws.push(rawMovieInMap)
+            }
+        })
+
+        return { createRaws, updateRaws, updateRecordMap }
+    } catch (e) {
+        logError('getCreateOrUpdateRecords error ', e as Error)
+        return {
+            createRaws: [],
+            updateRaws: [],
+            updateRecordMap
+        }
+    }
 }

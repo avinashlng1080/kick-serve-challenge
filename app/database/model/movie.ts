@@ -19,4 +19,5 @@ export default class MovieModel extends Model {
     @text('overview') overview!: string // overview
 
     @field('movie_id') movieId!: string // id from Rest API
+    @field('is_favorite') isFavorite!: boolean
 }

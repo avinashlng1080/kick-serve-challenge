@@ -7,12 +7,9 @@ import withObservables from '@nozbe/with-observables'
 import DiscoverScreen from './discover'
 
 const enhanced = withObservables(
-    ['movies'],
+    [],
     ({ database }: { movies: MovieModel[]; database: Database }) => ({
-        movies: database
-            .get<MovieModel>(KS_DB_MOVIE)
-            .query()
-            .observeWithColumns(['movie_id', 'title', 'poster_path'])
+        movies: database.get<MovieModel>(KS_DB_MOVIE).query().observe()
     })
 )
 

@@ -18,6 +18,7 @@ export const transformMovieRecord = (
         movie.title = rawMovie.title
         movie.voteAverage = rawMovie.vote_average
         movie.overview = rawMovie.overview
+        movie.isFavorite = rawMovie?.isFavorite ?? false // thinking that in the future we might get a flow that has isFavorite in it
     }
 
     return prepareBaseRecord(
