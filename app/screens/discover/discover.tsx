@@ -28,7 +28,7 @@ type DiscoverProps = {
     movies: MovieModel[]
     favoriteIds: string[]
 }
-const Discover = ({ navigation, movies, favoriteIds }: DiscoverProps) => {
+const Discover = ({ navigation, movies }: DiscoverProps) => {
     // NETWORK REACHABILITY - we fetch the movies once we get back internet connection
     useEffect(() => {
         const netListner = NetInfo.addEventListener((state) => {
@@ -56,7 +56,7 @@ const Discover = ({ navigation, movies, favoriteIds }: DiscoverProps) => {
                     onAction={() => navigation.navigate(SCREENS.SETTINGS)}
                 />
             ) : (
-                <KSList movies={movies} favoriteIds={favoriteIds} />
+                <KSList />
             )}
         </View>
     )

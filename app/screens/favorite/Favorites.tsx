@@ -40,6 +40,7 @@ const Favorites = ({ navigation, favorites }: FavoritesProps) => {
                 movieId={item.movieId}
                 posterPath={item.posterPath}
                 title={item.title}
+                key={item.title}
             />
         )
     }, [])
